@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const User = require('./models/User'); // Dodaj to
-const jwt = require('jsonwebtoken'); // Dodaj to
+const User = require('./models/User');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -35,7 +35,7 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ error: 'Nieprawidłowe dane logowania' });
     }
 
-    const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' }); // Zmień 'your_jwt_secret' na swój sekret
+    const token = jwt.sign({ id: user.id }, '', { expiresIn: '1h' });
     res.json({ message: 'Zalogowano pomyślnie!', token });
   } catch (error) {
     res.status(500).json({ error: 'Błąd podczas logowania: ' + error.message });
